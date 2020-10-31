@@ -147,6 +147,168 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
       setTimeout(() => snackbar.classList.add('d-none'), 500)
     }, 6000)
   })
+
+  const profile = {
+    "address": "999 avenue de France",
+    "birthday": "01/01/1970",
+    "city": "Paris",
+    "datesortie": "31/10/2020",
+    "firstname": "Camille",
+    "heuresortie": "12:28",
+    "lastname": "Dupont",
+    "ox-achats": "achats",
+    "ox-convocation": "convocation",
+    "ox-enfants": "enfants",
+    "ox-famille": "famille",
+    "ox-handicap": "handicap",
+    "ox-missions": "missions",
+    "ox-sante": "sante",
+    "ox-sport_animaux": "sport_animaux",
+    "ox-travail": "travail",
+    "placeofbirth": "Paris",
+    "zipcode": "75001",
+  }
+
+  $('#generate-btn2').addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    const reasons = "travail"
+    /*const profile = {
+      "address": "999 avenue de France",
+      "birthday": "01/01/1970",
+      "city": "Paris",
+      "datesortie": "31/10/2020",
+      "firstname": "Camille",
+      "heuresortie": "12:28",
+      "lastname": "Dupont",
+      "ox-achats": "achats",
+      "ox-convocation": "convocation",
+      "ox-enfants": "enfants",
+      "ox-famille": "famille",
+      "ox-handicap": "handicap",
+      "ox-missions": "missions",
+      "ox-sante": "sante",
+      "ox-sport_animaux": "sport_animaux",
+      "ox-travail": "travail",
+      "placeofbirth": "Paris",
+      "zipcode": "75001",
+    }*/
+
+    console.log(profile);
+    console.log(reasons);
+
+    const pdfBlob = await generatePdf(profile, reasons, pdfBase)
+
+    const creationInstant = new Date()
+    const creationDate = creationInstant.toLocaleDateString('fr-CA')
+    const creationHour = creationInstant
+      .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      .replace(':', '-')
+
+    downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`)
+
+    snackbar.classList.remove('d-none')
+    setTimeout(() => snackbar.classList.add('show'), 100)
+
+    setTimeout(function () {
+      snackbar.classList.remove('show')
+      setTimeout(() => snackbar.classList.add('d-none'), 500)
+    }, 6000)
+  })
+
+  $('#generate-btn3').addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    const reasons = getReasons(reasonInputs)
+    if (!reasons) {
+      reasonFieldset.classList.add('fieldset-error')
+      reasonAlert.classList.remove('hidden')
+      reasonFieldset.scrollIntoView && reasonFieldset.scrollIntoView()
+      return
+    }
+
+    const invalid = validateAriaFields()
+    if (invalid) {
+      return
+    }
+
+    console.log(getProfile(formInputs), reasons);
+
+    //const thisDate = new Date();
+    //var datePlusOne = thisDate.setDate(thisDate.getDate() + 60);
+    //const cookieExpirationDate = "Sun, 01 Nov 2020 12:00:00 UTC";
+
+    //console.log(cookieExpirationDate);
+
+    var d = new Date();
+    d.setTime(d.getTime() + (60*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "user-data=" + JSON.stringify(getProfile(formInputs)) + ";" + expires + ";path=/";
+    document.cookie = "reasons=" + reasons + ";" + expires + ";path=/";
+
+    /*const pdfBlob = await generatePdf(getCookie("user-data"), getCookie("reasons"), pdfBase)
+
+    const creationInstant = new Date()
+    const creationDate = creationInstant.toLocaleDateString('fr-CA')
+    const creationHour = creationInstant
+      .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      .replace(':', '-')
+
+    downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`)
+
+    snackbar.classList.remove('d-none')
+    setTimeout(() => snackbar.classList.add('show'), 100)
+
+    setTimeout(function () {
+      snackbar.classList.remove('show')
+      setTimeout(() => snackbar.classList.add('d-none'), 500)
+    }, 6000)*/
+  })
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  $('#generate-btn4').addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    /*console.log("cookie user-data:");
+    console.log(JSON.parse(getCookie("user-data")));
+
+    console.log("cookie reasons:");
+    console.log(getCookie("reasons"));
+    console.log(typeof(getCookie("reasons")))*/
+
+    const pdfBlob = await generatePdf(JSON.parse(getCookie("user-data")), getCookie("reasons"), pdfBase)
+
+    const creationInstant = new Date()
+    const creationDate = creationInstant.toLocaleDateString('fr-CA')
+    const creationHour = creationInstant
+      .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      .replace(':', '-')
+
+    downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`)
+
+    snackbar.classList.remove('d-none')
+    setTimeout(() => snackbar.classList.add('show'), 100)
+
+    setTimeout(function () {
+      snackbar.classList.remove('show')
+      setTimeout(() => snackbar.classList.add('d-none'), 500)
+    }, 6000)
+  })
 }
 
 export function prepareForm () {
