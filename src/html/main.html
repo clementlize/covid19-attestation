@@ -1,0 +1,57 @@
+<!-- A rajouter -->
+<h3>Bienvenue, Clément</h3>
+<p id="coordonnees" class="text-muted">Clément Lizé <br>
+    24 rue Joly, 31400 TOULOUSE <br>
+    Né(e) le 27/01/2000 à TOULON
+</p>
+<button type="button" class="btn btn-primary main_btn btn-config" id="btn-modif">
+    Modifier les coordonnées
+</button>
+
+<!-- Début -->
+<div id="bienvenue_container">
+
+
+</div>
+
+<form id="sortieForm" class="marginContainer">
+
+    <div class="form-group">
+        <label for="input-prenom">Date de sortie</label>
+        <input type="date" class="form-control" id="input-date" name="input-date" required
+            pattern="\d{4}-\d{2}-\d{2}">
+    </div>
+
+    <div class="form-group">
+        <label for="input-nom">Heure de sortie</label>
+        <input type="datetime-local" class="form-control" id="input-heure" name="input-heure" required
+            pattern="\d{2}:\d{2}">
+    </div>            
+</form>
+
+<div id="generate_container" class="marginContainer">
+    <h3 class="text-center" id="generate_text">Générer une attestation</h3>
+
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-travail">
+        Travail
+    </button>
+
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-achats">
+        Achats
+    </button>
+
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-soins">
+        Soins
+    </button>
+
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-personnes">
+        Personnes vulnérables
+    </button>
+
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-sortie">
+        Sortie 1h 1km
+    </button>
+</div>
+
+<p class="text-center marginContainer"><a target="_blank" href="https://media.interieur.gouv.fr/deplacement-covid-19/">Cliquez ici pour consulter le générateur
+    officiel d’attestation</a></p>

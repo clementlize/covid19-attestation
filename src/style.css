@@ -1,0 +1,53 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+#main_container {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.textCenter {
+
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+#noCookieExplText {
+
+    margin-bottom: 2em;
+}
+
+#coordonnees {
+
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+#generate_container {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.marginContainer {
+
+    margin-top: 2em;
+}
+
+#generate_text {
+
+    margin-bottom: .7em;
+}
+
+.btn-generate {
+
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
