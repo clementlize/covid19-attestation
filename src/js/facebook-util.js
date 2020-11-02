@@ -2,11 +2,10 @@ import { $ } from './dom-utils'
 
 export function warnFacebookBrowserUserIfNecessary () {
   if (isFacebookBrowser()) {
-    const alertFacebookElt = $('#alert-facebook')
-    alertFacebookElt.value =
-      "ATTENTION !! Vous utilisez actuellement le navigateur Facebook, ce générateur ne fonctionne pas correctement au sein de ce navigateur ! Merci d'ouvrir Chrome sur Android ou bien Safari sur iOS."
-    alertFacebookElt.innerHTML =   
-      "ATTENTION !! Vous utilisez actuellement le navigateur Facebook, ce générateur ne fonctionne pas correctement au sein de ce navigateur ! Merci d'ouvrir Chrome sur Android ou bien Safari sur iOS."
+    const alertFacebookElt = $('#alert-facebook');
+    const textFbAlert = "ATTENTION !! Vous utilisez actuellement le navigateur Facebook, ce générateur ne fonctionne pas correctement au sein de ce navigateur ! Merci d'ouvrir Chrome sur Android ou bien Safari sur iOS."
+    alertFacebookElt.value =textFbAlert;
+    alertFacebookElt.innerHTML = textFbAlert;
     alertFacebookElt.classList.remove('d-none')
   }
 }
