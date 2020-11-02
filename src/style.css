@@ -62,3 +62,22 @@ body {
 
     margin-top: 2.5em;
 }
+
+#edit_form_buttons_container{
+
+    display: flex;
+    justify-content: center;
+}
+
+#edit_form_buttons {
+
+    display: inline-flex;
+    flex-direction: column;
+    margin-top: 2.5em;
+}
+
+#btn-cancel {
+
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}

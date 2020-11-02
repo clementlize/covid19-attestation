@@ -9,14 +9,27 @@ export function homePage () {
   if(isCookie(cookieEditName) && getCookie(cookieEditName) == "true") {
 
     // Filling main content with the "edit profile" form
-    var editionHtml = '<p class="textCenter">Remplissez les champs pour compléter votre profil</p><form id="editDataForm"> <div class="form-group"> <label for="input-prenom">Prénom</label> <input class="form-control" id="input-prenom" placeholder="Camille" required> </div><div class="form-group"> <label for="input-nom">Nom</label> <input class="form-control" id="input-nom" placeholder="Dupont" required> </div><div class="form-group"> <label for="input-birthda">Date de naissance</label> <input class="form-control" id="input-birthday" placeholder="01/01/1970" required pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)"> </div><div class="form-group"> <label for="input-birthplace">Lieu de naissance</label> <input class="form-control" id="input-birthplace" placeholder="Paris" required> </div><div class="form-group"> <label for="input-address">Adresse</label> <input class="form-control" id="input-address" placeholder="999 avenue de France" required> </div><div class="form-group"> <label for="input-city">Ville</label> <input class="form-control" id="input-city" placeholder="Paris" required> </div><div class="form-group"> <label for="input-postal">Code Postal</label> <input class="form-control" id="input-postal" placeholder="75001" required pattern="\d{5}"> </div><button type="submit" id="btn-submit" class="btn btn-primary">Enregistrer</button></form>';
+    var editionHtml = '<p class="textCenter">Remplissez les champs pour compléter votre profil</p><form id="editDataForm"> <div class="form-group"> <label for="input-prenom">Prénom</label> <input class="form-control" id="input-prenom" placeholder="Camille" required> </div><div class="form-group"> <label for="input-nom">Nom</label> <input class="form-control" id="input-nom" placeholder="Dupont" required> </div><div class="form-group"> <label for="input-birthda">Date de naissance</label> <input class="form-control" id="input-birthday" placeholder="01/01/1970" required pattern="^([0][1-9]|[1-2][0-9]|30|31)\/([0][1-9]|10|11|12)\/(19[0-9][0-9]|20[0-1][0-9]|2020)"> </div><div class="form-group"> <label for="input-birthplace">Lieu de naissance</label> <input class="form-control" id="input-birthplace" placeholder="Paris" required> </div><div class="form-group"> <label for="input-address">Adresse</label> <input class="form-control" id="input-address" placeholder="999 avenue de France" required> </div><div class="form-group"> <label for="input-city">Ville</label> <input class="form-control" id="input-city" placeholder="Paris" required> </div><div class="form-group"> <label for="input-postal">Code Postal</label> <input class="form-control" id="input-postal" placeholder="75001" required pattern="\d{5}"> </div><div id="edit_form_buttons_container"> <div id="edit_form_buttons"> <button type="submit" id="btn-submit" class="btn btn-primary">Enregistrer</button> <button id="btn-cancel" class="btn btn-primary">Annuler</button> <button id="btn-delete" class="btn btn-danger">Supprimer mes données</button> </div></div></form>';
     document.getElementById("main_container").innerHTML = editionHtml;
+
+    var formValues = document.getElementById("editDataForm").elements;
+
+    if (isCookie(cookieDataName)) {
+
+      const fromData = JSON.parse(getCookie(cookieDataName));
+
+      formValues[0].value = fromData.firstname;
+      formValues[1].value = fromData.lastname;
+      formValues[2].value = fromData.birthday;
+      formValues[3].value = fromData.placeofbirth;
+      formValues[4].value = fromData.address;
+      formValues[5].value = fromData.city;
+      formValues[6].value = fromData.zipcode;
+    }
 
     // Submit action -> update or create the cookie user-data
     $("#btn-submit").addEventListener('click', async (event) => {
       event.preventDefault();
-
-      var formValues = document.getElementById("editDataForm").elements;
 
       var profile = {
         "address": formValues[4].value,
@@ -43,6 +56,31 @@ export function homePage () {
       setCookie(cookieDataName, JSON.stringify(profile), 60);
       // Exiting "edit profile"
       setCookie(cookieEditName, "false", 0);
+
+      // Refresh
+      location.reload();
+      return false;
+    });
+
+    // Cancel action
+    $("#btn-cancel").addEventListener('click', async (event) => {
+      event.preventDefault();
+
+      // Exiting "edit profile"
+      setCookie(cookieEditName, "false", 0);
+
+      // Refresh
+      location.reload();
+      return false;
+    });
+
+    // Delete data action
+    $("#btn-delete").addEventListener('click', async (event) => {
+      event.preventDefault();
+      
+      // Exiting "edit profile"
+      setCookie(cookieDataName, "", -1);
+      setCookie(cookieEditName, "", -1);
 
       // Refresh
       location.reload();
