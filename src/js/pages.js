@@ -53,7 +53,7 @@ export function homePage () {
     console.log(fromCookie);
 
     // Remplissage principal
-    const mainHtml = '<div id="bienvenue_container"></div><form id="sortieForm" class="marginContainer"> <div class="form-group"> <label for="input-prenom">Date de sortie</label> <input class="form-control" id="input-date" name="input-date" required pattern="\d{4}-\d{2}-\d{2}"> </div><div class="form-group"> <label for="input-nom">Heure de sortie</label> <input class="form-control" id="input-heure" name="input-heure" required pattern="\d{2}:\d{2}"> </div></form><div id="generate_container" class="marginContainer"> <h3 class="text-center" id="generate_text">Générer une attestation</h3> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-travail"> Travail </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-achats"> Achats </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-soins"> Soins </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-personnes"> Personnes vulnérables </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-sortie"> Sortie 1h 1km </button></div><p class="text-center marginContainer"><a target="_blank" href="https://media.interieur.gouv.fr/deplacement-covid-19/">Cliquez ici pour consulter le générateur officiel d’attestation</a></p>'
+    const mainHtml = '<div id="bienvenue_container"></div><form id="sortieForm" class="marginContainer"> <div class="form-group"> <label for="input-prenom">Date de sortie</label> <input class="form-control" id="input-date" name="input-date" required pattern="\d{4}-\d{2}-\d{2}"> </div><div class="form-group"> <label for="input-nom">Heure de sortie</label> <input class="form-control" id="input-heure" name="input-heure" required pattern="\d{2}:\d{2}"> </div></form><div id="generate_container" class="marginContainer"> <h3 class="text-center" id="generate_text">Générer une attestation</h3> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-sortie"> Sortie 1h 1km </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-achats"> Achats </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-travail"> Travail </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-soins"> Soins </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-personnes"> Famille, personnes vulnérables </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-enfants"> Enfants et école </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-handicap"> Handicap </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-missions"> Missions int. gén. </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-convocation"> Convocation </button></div><p class="text-center marginContainer"><a target="_blank" href="https://media.interieur.gouv.fr/deplacement-covid-19/">Cliquez ici pour consulter le générateur officiel d’attestation</a></p><p id="confidentialite"><br>Vos informations sont stockées <u>uniquement dans votre navigateur</u> grâce aux cookies. Elles sont automatiquement supprimées au bout de 60 jours.</p><p id="confidentialite">Version 1.1</p>'
     document.getElementById("main_container").innerHTML = mainHtml;
 
     // Remplissage secondaire
@@ -85,22 +85,22 @@ export function homePage () {
       goToEditPage();  
     });
 
-    $("#btn-generate-travail").addEventListener('click', async (event) => {
+    $("#btn-generate-sortie").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "travail", fromCookie);
-    });
-
-    $("#btn-generate-travail").addEventListener('click', async (event) => {
-      event.preventDefault()
-    
-      generate(formValues[0].value, formValues[1].value, "travail", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "sport_animaux", fromCookie);
     });
 
     $("#btn-generate-achats").addEventListener('click', async (event) => {
       event.preventDefault()
     
       generate(formValues[0].value, formValues[1].value, "achats", fromCookie);
+    });
+
+    $("#btn-generate-travail").addEventListener('click', async (event) => {
+      event.preventDefault()
+    
+      generate(formValues[0].value, formValues[1].value, "travail", fromCookie);
     });
 
     $("#btn-generate-soins").addEventListener('click', async (event) => {
@@ -115,16 +115,34 @@ export function homePage () {
       generate(formValues[0].value, formValues[1].value, "famille", fromCookie);
     });
 
-    $("#btn-generate-sortie").addEventListener('click', async (event) => {
+    $("#btn-generate-enfants").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "sport_animaux", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "enfants", fromCookie);
+    });
+
+    $("#btn-generate-handicap").addEventListener('click', async (event) => {
+      event.preventDefault()
+    
+      generate(formValues[0].value, formValues[1].value, "handicap", fromCookie);
+    });
+
+    $("#btn-generate-missions").addEventListener('click', async (event) => {
+      event.preventDefault()
+    
+      generate(formValues[0].value, formValues[1].value, "missions", fromCookie);
+    });
+
+    $("#btn-generate-convocation").addEventListener('click', async (event) => {
+      event.preventDefault()
+    
+      generate(formValues[0].value, formValues[1].value, "convocation", fromCookie);
     });
 
   }
   else {
 
-    var noCookieHtml = '<p class="textCenter"> Aucune donnée n\'est enregistrée pour pour ce navigateur</p><button type="button" class="btn btn-primary main_btn btn-config" id="btn-config"> Configurer votre profil</button>'
+    var noCookieHtml = '<p class="textCenter"> Bienvenue. Ce service vous permet de remplir les attestations de déplacement plus rapidement. <br><br>Vos informations sont stockées <u>uniquement dans votre navigateur</u> grâce aux cookies. Elles sont automatiquement supprimées au bout de 60 jours. <br><br>Pour démarrer, configurez votre profil :</p><button type="button" class="btn btn-primary main_btn btn-config" id="btn-config"> Configurer votre profil</button>'
     
     document.getElementById("main_container").innerHTML = noCookieHtml;
 

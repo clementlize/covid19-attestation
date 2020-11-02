@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "covid",
+            "script": "npx",
+            "args" : "serve dist"
+        }
+    ]
+}

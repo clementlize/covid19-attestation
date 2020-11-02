@@ -51,3 +51,9 @@ body {
     margin-top: .5em;
     margin-bottom: .5em;
 }
+
+#confidentialite {
+
+    font-size: .8em;
+    text-align: center;
+}

@@ -18,13 +18,13 @@
 
     <div class="form-group">
         <label for="input-prenom">Date de sortie</label>
-        <input type="date" class="form-control" id="input-date" name="input-date" required
+        <input class="form-control" id="input-date" name="input-date" required
             pattern="\d{4}-\d{2}-\d{2}">
     </div>
 
     <div class="form-group">
         <label for="input-nom">Heure de sortie</label>
-        <input type="datetime-local" class="form-control" id="input-heure" name="input-heure" required
+        <input class="form-control" id="input-heure" name="input-heure" required
             pattern="\d{2}:\d{2}">
     </div>            
 </form>
@@ -32,12 +32,16 @@
 <div id="generate_container" class="marginContainer">
     <h3 class="text-center" id="generate_text">Générer une attestation</h3>
 
-    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-travail">
-        Travail
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-sortie">
+        Sortie 1h 1km
     </button>
 
     <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-achats">
         Achats
+    </button>
+
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-travail">
+        Travail
     </button>
 
     <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-soins">
@@ -45,13 +49,28 @@
     </button>
 
     <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-personnes">
-        Personnes vulnérables
+        Famille, personnes vulnérables
     </button>
 
-    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-sortie">
-        Sortie 1h 1km
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-enfants">
+        Enfants et école
+    </button>
+    
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-handicap">
+        Handicap
+    </button>
+
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-missions">
+        Missions int. gén.
+    </button>
+
+    <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-convocation">
+        Convocation
     </button>
 </div>
 
 <p class="text-center marginContainer"><a target="_blank" href="https://media.interieur.gouv.fr/deplacement-covid-19/">Cliquez ici pour consulter le générateur
     officiel d’attestation</a></p>
+
+<p id="confidentialite"><br>Vos informations sont stockées <u>uniquement dans votre navigateur</u> grâce aux cookies. Elles sont automatiquement supprimées au bout de 60 jours.</p>
+<p id="confidentialite">Version 1.1</p>
