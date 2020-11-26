@@ -81,3 +81,13 @@ body {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
 }
+
+#alert-update {
+
+    background-color: rgb(187, 35, 35, .62);
+    padding: .7em;
+    font-size: .8em;
+    color: white;
+    margin-bottom: 2em;
+    margin-top: -1.5em;
+}
