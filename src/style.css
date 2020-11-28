@@ -82,9 +82,9 @@ body {
     margin-bottom: 1.5em;
 }
 
-#alert-update {
+#alert-update-done {
 
-    background-color: rgb(187, 35, 35, .62);
+    background-color: rgba(26, 168, 38, 0.62);
     padding: .7em;
     font-size: .8em;
     color: white;
