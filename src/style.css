@@ -91,3 +91,13 @@ body {
     margin-bottom: 2em;
     margin-top: -1.5em;
 }
+
+#alert-update {
+
+    background-color: rgba(168, 26, 26, 0.62);
+    padding: .7em;
+    font-size: .8em;
+    color: white;
+    margin-bottom: 2em;
+    margin-top: -1.5em;
+}
