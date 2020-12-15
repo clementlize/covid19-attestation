@@ -111,3 +111,17 @@ body {
     margin-bottom: 2em;
     margin-top: -1.5em;
 }
+
+@media(min-width: 576px) {
+
+    body {
+
+        display: flex;
+        align-items: center;
+    }
+
+    #webpage_container {
+
+        max-width: 30vw;
+    }
+}
