@@ -91,10 +91,14 @@ export function homePage () {
   else if (isCookie(cookieDataName)) {
 
     // Récupération du cookie user-data sous forme de Json
-    var fromCookie = JSON.parse(getCookie(cookieDataName));
+    var fromCookie_brut = getCookie(cookieDataName);
+    var fromCookie = JSON.parse(fromCookie_brut);
+
+    // On reset le cookie pour qu'il reste encore 60 jours
+    setCookie(cookieDataName, fromCookie_brut, 60);
 
     // Remplissage principal
-    const mainHtml = '<div id="bienvenue_container"></div><form id="sortieForm" class="marginContainer"> <div class="form-group"> <label for="input-prenom">Date de sortie</label> <input class="form-control" id="input-date" name="input-date" required pattern="\d{4}-\d{2}-\d{2}"> </div><div class="form-group"> <label for="input-nom">Heure de sortie</label> <input class="form-control" id="input-heure" name="input-heure" required pattern="\d{2}:\d{2}"> </div></form><div id="generate_container" class="marginContainer"> <h3 class="text-center" id="generate_text">Générer une attestation</h3> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-sortie"> Sortie 3h 20km </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-achats"> Achats </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-travail"> Travail </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-soins"> Soins </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-personnes"> Famille, personnes vulnérables </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-enfants"> Enfants et école </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-handicap"> Handicap </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-missions"> Missions int. gén. </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-convocation"> Convocation </button></div><p class="text-center marginContainer"><a target="_blank" href="https://media.interieur.gouv.fr/deplacement-covid-19/">Cliquez ici pour consulter le générateur officiel d’attestation</a></p>'
+    const mainHtml = '<div id="bienvenue_container"></div><form id="sortieForm" class="marginContainer"> <div class="form-group"> <label for="input-prenom">Date de sortie</label> <input class="form-control" id="input-date" name="input-date" required pattern="\d{4}-\d{2}-\d{2}"> </div><div class="form-group"> <label for="input-nom">Heure de sortie</label> <input class="form-control" id="input-heure" name="input-heure" required pattern="\d{2}:\d{2}"> </div></form><div id="generate_container" class="marginContainer"> <h3 class="text-center" id="generate_text">Générer une attestation</h3> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-travail"> Travail </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-transits"> Déplacements longue distance (train, avion) </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-animaux"> Animaux : 1km </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-soins"> Soins </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-personnes"> Famille, personnes vulnérables </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-handicap"> Handicap </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-missions"> Missions int. gén. </button> <button type="button" class="btn btn-info main_btn btn-generate" id="btn-generate-convocation"> Convocation </button></div><p class="text-center marginContainer"><a target="_blank" href="https://media.interieur.gouv.fr/deplacement-covid-19/">Cliquez ici pour consulter le générateur officiel d’attestation</a></p>'
     document.getElementById("main_container").innerHTML = mainHtml;
 
     // Remplissage secondaire
@@ -128,58 +132,52 @@ export function homePage () {
       goToEditPage();  
     });
 
-    $("#btn-generate-sortie").addEventListener('click', async (event) => {
+    $("#btn-generate-animaux").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "sport_animaux", fromCookie);
-    });
-
-    $("#btn-generate-achats").addEventListener('click', async (event) => {
-      event.preventDefault()
-    
-      generate(formValues[0].value, formValues[1].value, "achats", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "animaux", fromCookie);  // ok MAIS NEW : SORTIE -> ANIMAUX
     });
 
     $("#btn-generate-travail").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "travail", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "travail", fromCookie); //ok
     });
 
     $("#btn-generate-soins").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "sante", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "sante", fromCookie);  //ok
     });
 
     $("#btn-generate-personnes").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "famille", fromCookie);
-    });
-
-    $("#btn-generate-enfants").addEventListener('click', async (event) => {
-      event.preventDefault()
-    
-      generate(formValues[0].value, formValues[1].value, "enfants", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "famille", fromCookie);  //ok
     });
 
     $("#btn-generate-handicap").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "handicap", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "handicap", fromCookie);  //ok
     });
 
     $("#btn-generate-missions").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "missions", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "missions", fromCookie);  // ok
     });
 
     $("#btn-generate-convocation").addEventListener('click', async (event) => {
       event.preventDefault()
     
-      generate(formValues[0].value, formValues[1].value, "convocation", fromCookie);
+      generate(formValues[0].value, formValues[1].value, "convocation", fromCookie);  //ok
+    });
+
+    $("#btn-generate-transits").addEventListener('click', async (event) => {
+      event.preventDefault()
+    
+      generate(formValues[0].value, formValues[1].value, "transits", fromCookie);  //NEW : TRANSITS
     });
 
   }

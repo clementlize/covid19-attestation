@@ -84,6 +84,16 @@ body {
 
 #alert-update-done {
 
+    background-color: rgba(38, 168, 26, 0.62);
+    padding: .7em;
+    font-size: .8em;
+    color: white;
+    margin-bottom: 2em;
+    margin-top: -1.5em;
+}
+
+#alert-update-blue {
+
     background-color: rgba(26, 80, 168, 0.62);
     padding: .7em;
     font-size: .8em;

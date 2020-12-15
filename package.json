@@ -33,17 +33,17 @@
     "url": "https://github.com/lab-mi/attestation-deplacement-derogatoire-q4-2020/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "babel-eslint": "^10.1.0",
     "copy-and-watch": "^0.1.5",
-    "cross-env": "^7.0.2",
-    "eslint": "^7.12.1",
-    "eslint-config-standard": "^16.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.15.0",
+    "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.2",
+    "eslint-plugin-standard": "^4.1.0",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-sw-cache": "^0.3.1",
@@ -51,8 +51,8 @@
     "postcss-nested": "^4.2.3",
     "postcss-nested-ancestors": "^2.0.0",
     "postcss-preset-env": "^6.7.0",
-    "posthtml-expressions": "^1.6.0",
-    "prettier": "^2.1.2",
+    "posthtml-expressions": "^1.7.1",
+    "prettier": "^2.2.1",
     "react-snap": "^1.23.0",
     "rimraf": "^3.0.2",
     "serve": "^11.3.2"
@@ -61,7 +61,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "bootstrap": "^4.5.3",
-    "pdf-lib": "^1.11.2",
+    "pdf-lib": "^1.13.0",
     "qrcode": "^1.4.4"
   },
   "browserslist": [
