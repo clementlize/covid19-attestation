@@ -122,6 +122,14 @@ body {
 
     #webpage_container {
 
+        max-width: 60vw;
+    }
+}
+
+@media (min-width: 920px) {
+
+    #webpage_container {
+
         max-width: 30vw;
     }
 }
